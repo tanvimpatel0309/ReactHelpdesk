@@ -51,7 +51,9 @@
   .menu-bar .list-items.active .menu-items {
     color: #ff4b0b; /* Use CSS variable or set the color directly */
   }
-  
+  a{
+    text-decoration: none;
+  }
   .menu-bar .list-items:hover:after,
   .menu-bar .list-items.active:after {
     content: "";
