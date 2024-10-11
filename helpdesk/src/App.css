@@ -1,1 +1,185 @@
-/* add app CSS here */
+/* primary nav css */
+.primary-nav {
+    min-width: 225px;
+    background-color: #ff4b0b; /* Use CSS variable or set the color directly */
+  }
+  
+  .logo-bar {
+    height: 75px;
+  }
+  
+  .logo-text {
+    padding: 1px 5px;
+    border-radius: 10px;
+  }
+  
+  .menu-bar {
+    z-index: 2;
+  }
+  
+  .menu-bar .list-items {
+    display: flex;
+    border-radius: 17px;
+    height: 50px;
+    background-color: #ff4b0b; /* Use CSS variable or set the color directly */
+  }
+  
+  .menu-bar .list-items a {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .menu-bar .list-items a .icon,
+  .menu-bar .list-items a .menu-items {
+    color: #FFFFFF; /* Use CSS variable or set the color directly */
+  }
+  
+  .menu-bar .list-items:hover,
+  .menu-bar .list-items.active {
+    background-color: #FFFFFF; /* Use CSS variable or set the color directly */
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  
+  .menu-bar .list-items:hover .icon,
+  .menu-bar .list-items.active .icon,
+  .menu-bar .list-items:hover .menu-items,
+  .menu-bar .list-items.active .menu-items {
+    color: #ff4b0b; /* Use CSS variable or set the color directly */
+  }
+  
+  .menu-bar .list-items:hover:after,
+  .menu-bar .list-items.active:after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    border: 8px solid #FFFFFF; /* Use CSS variable or set the color directly */
+    position: absolute;
+    top: -14px;
+    right: 0;
+    z-index: -1;
+  }
+  
+  .menu-bar .list-items:hover:before,
+  .menu-bar .list-items.active:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    border: 8px solid #FFFFFF; /* Use CSS variable or set the color directly */
+    position: absolute;
+    bottom: -14px;
+    right: 0;
+  }
+  
+  .menu-bar .list-items:hover:first-child a:after,
+  .menu-bar .list-items.active:first-child a:after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: -16px;
+    right: 0;
+    border: 8px solid #ff4b0b; /* Use CSS variable or set the color directly */
+    border-bottom-right-radius: 20px;
+  }
+  
+  .menu-bar .list-items:hover:last-child a:before,
+  .menu-bar .list-items.active:last-child a:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    bottom: -16px;
+    right: 0;
+    border: 8px solid #ff4b0b; /* Use CSS variable or set the color directly */
+    border-top-right-radius: 20px;
+  }
+  
+  .contain-nav {
+    width: 250px; /* Use CSS variable or set the value directly */
+  }
+  
+  #toggle-nav:checked + .contain-nav {
+    width: 120px; /* Use CSS variable or set the value directly */
+  }
+
+  /* user details dropdown css */
+  .hover-box {
+    position: relative;
+  }
+  
+  .show-box {
+    display: none;
+    position: absolute;
+    right: 0;
+    padding: 15px;
+    box-shadow: -2px 0px 14px 4px #ddcdcd;
+    background-color: #ffffff;
+    border-radius: 5px;
+    top: 124%;
+  }
+  
+  .hover-box:hover .show-box {
+    display: block;
+  }
+  
+  .hover-box:hover .show-box::before {
+    content: "";
+    border: 15px solid #c79090;
+    position: absolute;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    right: 20px;
+    bottom: 100%;
+  
+  }
+  .hover-box:hover .show-box::after {
+    content: "";
+    border: 15px solid #ffffff;
+    position: absolute;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    right: 20px;
+    bottom: 100%;
+  
+  }
+  
+  .hover-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:1.5rem;
+    padding: 10px;
+    background-color: #f2f1f1;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+  }
+  
+  .show-box-items {
+    color: #272323;
+    font-size: 13px;
+  }
+  .dimension-2x{
+    height: 50px;
+    width: 50px;
+  }
+  .short-name{
+    background-color: #f2f1f1;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+  .user-text{
+    font-size: 14px;
+    text-decoration: none;
+  }
