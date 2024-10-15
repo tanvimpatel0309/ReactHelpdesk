@@ -1,6 +1,10 @@
-import React from 'react';
+import { Category } from "../utility/models/category.model";
+import CategoryService from "../utility/services/category.services";
 
 const useCategory = () => {
-    return <h1>use category hook</h1>
+    const createCategory = (categoryFormBody: Category) => {
+        CategoryService.addCategory(categoryFormBody)
+    };
+    return {createCategory}
 }
 export default useCategory;

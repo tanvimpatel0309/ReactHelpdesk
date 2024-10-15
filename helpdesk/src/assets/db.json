@@ -1,0 +1,14 @@
+{
+  "category": [
+    {
+      "id": "1",
+      "category": "HR",
+      "assigneeName": "vandana"
+    },
+    {
+      "id": "2",
+      "category": "Account",
+      "assigneeName": "Nistha"
+    }
+  ]
+}
