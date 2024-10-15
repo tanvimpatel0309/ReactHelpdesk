@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import useCategory from "../hooks/useCategory";
@@ -11,7 +11,7 @@ function CategoryForm() {
         assigneeName: Yup.string().required('Assignee is required'),
     });
 
-    // Initial values for the form fields
+    // Initial values for the category form fields
     const initialValues = {
         category: '',
         assigneeName: ''
@@ -23,9 +23,7 @@ function CategoryForm() {
             validationSchema={validationSchema}
             enableReinitialize
             onSubmit={(formData, { resetForm }) => {
-                
                 createCategory(formData)
-
                 // Reset the form fields
                 resetForm();
                 
@@ -48,6 +46,8 @@ function CategoryForm() {
                                 component='div'
                                 className='text-danger' />
                         </div>
+                        {/* Ends: Category */}
+                        
                         {/* Starts: Assignee */}
                         <div className='mb-3'>
                             <Field
@@ -60,17 +60,19 @@ function CategoryForm() {
                                 component='div'
                                 className='text-danger' />
                         </div>
+                        {/* Ends: Assignee */}
                     </div>
-                    {/* Starts: Submit button */}
+                    
                     <footer className='mx-4'>
+                        {/* Starts: Submit button */}
                         <button
                             disabled={formik.isSubmitting}
                             className='btn btn-primary'
                             type='submit'
-                            title='Submit form'
-                        >
+                            title='Submit form'>
                             Add Category
                         </button>
+                    {/* Ends: Submit button */}
                     </footer>
                 </Form>
             )}

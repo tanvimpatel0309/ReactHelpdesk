@@ -10,7 +10,9 @@ function Header() {
         <img src={logo} alt="1Rivet logo" />
         <figcaption className='ms-2 h4 mb-0'> | 1Rivet</figcaption>
       </figure>
-      {/* Starts:user details dropdown */}
+      {/* Ends: 1Rivet logo  */}
+      
+      {/* Starts:User details dropdown */}
       <div role="menu" className='hover-box'>
         <span role='button' className='hover-item'>TP</span>
         <div className='show-box'>
@@ -33,8 +35,9 @@ function Header() {
             </li>
           </ul>
         </div>
-
       </div>
+      {/* Ends:User details dropdown */}
+
     </header>
     // Ends: header
 
