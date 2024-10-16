@@ -11,6 +11,16 @@ const addCategory = (categoryFormBody: Category): Promise<AxiosResponse<Category
     return axios.post(`http://localhost:3000/category`, categoryFormBody);
 };
 
-const CategoryService = {addCategory};
+/**
+ * Fetches categories from the server.
+ * 
+ * @returns {Promise<AxiosResponse<Category[], Category[]>>} A promise that resolves 
+ * to the Axios response containing an array of Category objects.
+ */
+const getCategories = (): Promise<AxiosResponse<Category[], Category[]>> => {
+    return axios.get('http://localhost:3000/category');
+};
+
+const CategoryService = {addCategory, getCategories};
 
 export default CategoryService;

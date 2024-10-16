@@ -7,6 +7,7 @@
  * @property {string} category - The name of the category.
  */
 export interface Category {
+    id: number,
     assigneeName: string,
     category: string
 }

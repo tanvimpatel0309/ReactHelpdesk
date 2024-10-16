@@ -60,7 +60,6 @@ function CategoryForm() {
                                 component='div'
                                 className='text-danger' />
                         </div>
-                        {/* Ends: Assignee */}
                     </div>
                     
                     <footer className='mx-4'>

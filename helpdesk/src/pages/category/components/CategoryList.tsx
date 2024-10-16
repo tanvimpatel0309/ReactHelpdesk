@@ -1,6 +1,24 @@
+/* eslint-disable no-debugger */
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Category } from "../utility/models/category.model";
+import useCategory from "../hooks/useCategory";
 
 function CategoryList() {
+    // Destructure 'getCategoryList' from a custom hook 'useCategory' to fetch categories.
+    const { getCategoryList } = useCategory();
+    // Initialize 'categoryList' state as an empty array of 'Category' type.
+    const [categoryList, setCategoryList] = useState<Category[]>([]);
+
+    useEffect(() => {
+        // Effect to fetch the category list when the component is mounted.
+        getCategoryList((res) => {
+            // Call 'getCategoryList' and pass a callback function to handle the response.
+            setCategoryList(res);
+            // Update the 'categoryList' state with the fetched category data.
+        });
+    }, []); // Empty dependency array to ensure this effect runs only once when the component mounts.
+
     return (
         <div className='w-100'>
             {/* starts:Category Header */}
@@ -20,7 +38,7 @@ function CategoryList() {
                     <tr>
                         {/*the scope="col" Defines as column header */}
                         <th scope="col" className='text-uppercase'>ID</th>
-                        <th scope="col" className='text-uppercase'>Category</th> 
+                        <th scope="col" className='text-uppercase'>Category</th>
                         <th scope="col" className='text-uppercase'>Assignee</th>
                         <th scope="col" className='w-lg'>Action</th>
                     </tr>
@@ -29,21 +47,20 @@ function CategoryList() {
 
                 {/* Starts:Table body */}
                 <tbody>
-                    <tr>
-                        <td className='fw-bold'>1</td>
-                        <td className='fw-bold text-capitalize'>HR</td>
-                        <td className='fw-bold text-capitalize'>Tanvi</td>
+                    {categoryList.map(({ id, category, assigneeName }) => <tr key={id}>
+                        <td className='fw-bold'>{id}</td>
+                        <td className='fw-bold text-capitalize w-50'>{category}</td>
+                        <td className='fw-bold text-capitalize'>{assigneeName}</td>
                         {/* Starts:Action buttons */}
-                        <td>
-                            <button className='btn btn-secondary me-4'>Add Subcategory</button>
+                        <td className="w-25">
                             <button className='btn btn-secondary me-4'>Edit</button>
                             <button type='button' className='btn btn-danger'>Delete</button>
                         </td>
                         {/* Ends:Action buttons */}
-                    </tr>
+                    </tr>)}
                 </tbody>
                 {/* Ends:Table body */}
-                
+
             </table>
             {/* Ends:Category Table */}
 
