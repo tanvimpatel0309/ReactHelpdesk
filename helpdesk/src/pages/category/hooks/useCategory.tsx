@@ -31,6 +31,18 @@ const useCategory = () => {
             callback(res.data);
         });
     };
-    return { createCategory, getCategoryList }
+
+    /**
+     * Deletes a category by its ID using the CategoryService.
+     * 
+     * @param categoryId - The ID of the category to delete.
+     */
+    const deleteCategory = (categoryId: number) => {
+        CategoryService.deleteCategory(categoryId)
+            .then() // Handles the successful deletion of the category.
+            .catch(error => error); // Catches and returns any errors that occur during the deletion.
+    };
+
+    return { createCategory, getCategoryList, deleteCategory }
 }
 export default useCategory;

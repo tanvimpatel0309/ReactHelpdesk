@@ -5,8 +5,9 @@ import { Category } from "../utility/models/category.model";
 import useCategory from "../hooks/useCategory";
 
 function CategoryList() {
-    // Destructure 'getCategoryList' from a custom hook 'useCategory' to fetch categories.
-    const { getCategoryList } = useCategory();
+    // Destructure 'getCategoryList, deleteCategory' from a custom hook 'useCategory'.
+    const { getCategoryList, deleteCategory } = useCategory();
+    
     // Initialize 'categoryList' state as an empty array of 'Category' type.
     const [categoryList, setCategoryList] = useState<Category[]>([]);
 
@@ -18,6 +19,19 @@ function CategoryList() {
             // Update the 'categoryList' state with the fetched category data.
         });
     }, []); // Empty dependency array to ensure this effect runs only once when the component mounts.
+
+
+    /**
+     * Deletes a category by its ID and updates the category list.
+     * 
+     * @param id - The ID of the category to delete.
+     */
+    const deleteCategoryById = (id: number) => {
+        deleteCategory(id);
+        setCategoryList((prevCategories) =>
+            prevCategories.filter(category => category.id !== id)
+        );
+    };
 
     return (
         <div className='w-100'>
@@ -54,7 +68,10 @@ function CategoryList() {
                         {/* Starts:Action buttons */}
                         <td className="w-25">
                             <button className='btn btn-secondary me-4'>Edit</button>
-                            <button type='button' className='btn btn-danger'>Delete</button>
+                            <button
+                                type='button'
+                                className='btn btn-danger'
+                                onClick={() => { deleteCategoryById(id) }}>Delete</button>
                         </td>
                         {/* Ends:Action buttons */}
                     </tr>)}

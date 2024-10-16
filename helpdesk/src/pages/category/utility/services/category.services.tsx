@@ -21,6 +21,17 @@ const getCategories = (): Promise<AxiosResponse<Category[], Category[]>> => {
     return axios.get('http://localhost:3000/category');
 };
 
-const CategoryService = {addCategory, getCategories};
+/**
+ * Deletes a category by its ID.
+ * 
+ * @param categoryId - The ID of the category to be deleted.
+ * @returns A Promise resolving to the Axios response with the category ID if successful.
+ * 
+ */
+const deleteCategory = (categoryId: number): Promise<AxiosResponse<number, number>> => {
+    return axios.delete(`http://localhost:3000/category/${categoryId}`);
+};
+
+const CategoryService = { addCategory, getCategories, deleteCategory };
 
 export default CategoryService;
