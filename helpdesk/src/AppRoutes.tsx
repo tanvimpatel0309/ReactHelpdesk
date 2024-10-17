@@ -26,7 +26,11 @@ function AppRoutes() {
                         {
                             path: 'add',
                             element: <CategoryForm />,
-                        }
+                        },
+                        {
+                            path: ':id',
+                            element: <CategoryForm />,
+                        },
                     ]
 
                 },

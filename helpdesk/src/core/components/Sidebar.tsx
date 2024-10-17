@@ -10,7 +10,7 @@ function Sidebar() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `position-relative list-items ${isActive || window.location.pathname === '/add' ? 'active' : ''}`
+              `position-relative list-items ${isActive || (window.location.pathname === '/add') || (window.location.pathname === '/:id') ? 'active' : ''}`
             }>
             <a className="menu-items pl-2">Category</a>
           </NavLink>

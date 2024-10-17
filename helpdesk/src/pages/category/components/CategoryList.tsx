@@ -7,7 +7,7 @@ import useCategory from "../hooks/useCategory";
 function CategoryList() {
     // Destructure 'getCategoryList, deleteCategory' from a custom hook 'useCategory'.
     const { getCategoryList, deleteCategory } = useCategory();
-    
+
     // Initialize 'categoryList' state as an empty array of 'Category' type.
     const [categoryList, setCategoryList] = useState<Category[]>([]);
 
@@ -67,7 +67,9 @@ function CategoryList() {
                         <td className='fw-bold text-capitalize'>{assigneeName}</td>
                         {/* Starts:Action buttons */}
                         <td className="w-25">
-                            <button className='btn btn-secondary me-4'>Edit</button>
+                            <Link
+                                to={`${id}`}
+                                className='btn btn-secondary me-4'>Edit</Link>
                             <button
                                 type='button'
                                 className='btn btn-danger'

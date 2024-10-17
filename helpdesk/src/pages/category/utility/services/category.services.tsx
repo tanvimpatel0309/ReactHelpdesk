@@ -32,6 +32,30 @@ const deleteCategory = (categoryId: number): Promise<AxiosResponse<number, numbe
     return axios.delete(`http://localhost:3000/category/${categoryId}`);
 };
 
-const CategoryService = { addCategory, getCategories, deleteCategory };
+/**
+ * Updates an existing category by sending a PUT request to the server.
+ *
+ * @param {Category} category - The updated category data to be sent to the server.
+ * @param {number} categoryId - The unique ID of the category to be edited.
+ * @returns {Promise<AxiosResponse<Category, Category>>} - A promise that resolves to the server's response,
+ *         
+ */
+const editCategory = (category: Category, categoryId: number): Promise<AxiosResponse<Category, Category>> => {
+    return axios.put(`http://localhost:3000/category/${categoryId}`, category);
+};
+
+
+/**
+ * Fetches the details of a category by its ID from the server.
+ *
+ * @param {number} categoryId - The unique ID of the category to retrieve.
+ * @returns {Promise<AxiosResponse<Category, Category>>} - A promise that resolves to the server's response,
+ *          
+ */
+const getCategoryById = (categoryId: number): Promise<AxiosResponse<Category, Category>> => {
+    return axios.get(`http://localhost:3000/category/${categoryId}`);
+};
+
+const CategoryService = { addCategory, getCategories, deleteCategory, editCategory, getCategoryById };
 
 export default CategoryService;

@@ -43,6 +43,36 @@ const useCategory = () => {
             .catch(error => error); // Catches and returns any errors that occur during the deletion.
     };
 
-    return { createCategory, getCategoryList, deleteCategory }
+    /**
+    * Edits a category by sending updated data to the server.
+    * Logs success or error based on the response.
+    *
+    * @param {Category} categoryFormBody - Updated category data.
+    * @param {number} categoryId - ID of the category to edit.
+    */
+    const editCategory = (categoryFormBody: Category, categoryId: number) => {
+        CategoryService.editCategory(categoryFormBody, categoryId)
+            .then((res) => {
+                console.log('edit success', res.data);
+            })
+            .catch(error => console.error(error));
+    };
+
+
+    /**
+     * Fetches category data by ID and passes it to a callback function.
+     * Handles success and error cases.
+     *
+     * @param {number} categoryId - ID of the category to fetch.
+     * @param {(registrationList: any) => void} callback - Function to handle the fetched data.
+     */
+    const getCategoryDataById = (categoryId: number, callback: (registrationList: any) => void) => {
+        CategoryService.getCategoryById(categoryId)
+            .then(res => callback(res.data))
+            .catch(error => console.error(error));
+    };
+
+
+    return { createCategory, getCategoryList, deleteCategory, editCategory, getCategoryDataById }
 }
 export default useCategory;

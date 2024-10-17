@@ -2,9 +2,20 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import useCategory from "../hooks/useCategory";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Category } from "../utility/models/category.model";
 
 function CategoryForm() {
-    const { createCategory } = useCategory();
+    // State variables for managing form data and category data fetched by ID
+    const [formValues, setFormValues] = useState<Category>(); // Holds form values for the category form
+    const [categoryById, setCategoryById] = useState<Category>(); // Holds the category data fetched from the server by ID
+
+    // Extracts the 'id' parameter from the URL route
+    const { id } = useParams();
+
+    // Destructures category-related functions from the custom useCategory hook
+    const { createCategory, editCategory, getCategoryDataById } = useCategory();
     // Yup validation schema for the form, ensuring required fields are provided
     const validationSchema = Yup.object({
         category: Yup.string().required('Category is required'),
@@ -17,16 +28,37 @@ function CategoryForm() {
         assigneeName: ''
     };
 
+    // Fetches the category data by ID when the 'id' changes (i.e., when the route parameter updates)
+    useEffect(() => {
+        if (id) {
+            getCategoryDataById(id, (res) => setCategoryById(res)); // Fetches category data by ID and updates the 'categoryById' state
+        }
+    }, [id]);
+
+    // Sets the form values once the category data is fetched and 'categoryById' is updated
+    useEffect(() => {
+        if (id) {
+            setFormValues(categoryById); // Updates the form values to reflect the fetched category data
+        }
+    }, [categoryById]);
+
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={formValues || initialValues}
             validationSchema={validationSchema}
             enableReinitialize
             onSubmit={(formData, { resetForm }) => {
-                createCategory(formData)
-                // Reset the form fields
-                resetForm();
-                
+
+                if (id) {
+                    // If 'id' exists, edit the existing category
+                    editCategory(formData, id)
+
+                } else {
+                    // Otherwise, create a new category
+                    createCategory(formData)
+                }
+                // Resets the form fields after successful submission
+                resetForm()
             }}>
             {formik => (
                 <Form className='col-xl-8 col-lg-6 col-12 border rounded pb-4'>
@@ -47,7 +79,7 @@ function CategoryForm() {
                                 className='text-danger' />
                         </div>
                         {/* Ends: Category */}
-                        
+
                         {/* Starts: Assignee */}
                         <div className='mb-3'>
                             <Field
@@ -61,7 +93,7 @@ function CategoryForm() {
                                 className='text-danger' />
                         </div>
                     </div>
-                    
+
                     <footer className='mx-4'>
                         {/* Starts: Submit button */}
                         <button
@@ -71,7 +103,7 @@ function CategoryForm() {
                             title='Submit form'>
                             Add Category
                         </button>
-                    {/* Ends: Submit button */}
+                        {/* Ends: Submit button */}
                     </footer>
                 </Form>
             )}
